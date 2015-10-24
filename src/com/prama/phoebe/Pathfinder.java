@@ -26,15 +26,15 @@ public class Pathfinder {
 	}
 	
 	protected void findPaths(short targetMapID) {
-		// For each map
 		for(short curMapID = 0; curMapID < Map.matrixArray.length; curMapID++) {
 			if(curMapID != targetMapID) {
 				ArrayList<Short> path = new ArrayList<Short>();
 				path.add(curMapID);
 				byte length = 1;
-				while(curMapID != targetMapID && length < Pathfinder.maxAmountOfSteps) {
-					curMapID = Map.matrixArray[curMapID];
-					path.add(curMapID);
+				short mapID = curMapID;
+				while(mapID != targetMapID && length < Pathfinder.maxAmountOfSteps) {
+					mapID = Map.matrixArray[mapID];
+					path.add(mapID);
 					length++;
 				}
 				if(length < Pathfinder.maxAmountOfSteps) {
