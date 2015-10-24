@@ -1,17 +1,27 @@
 package com.prama.phoebe;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Phoebe {
 
 	public static void main(String[] args) {
 		System.out.println("PHOEBE DEV BUILD");
-		System.out.println("Gimme a Map ID");
+		System.out.println("Je vais te trouver un chemin");
+		System.out.println("Donne-moi un ID de map");
 		Scanner inputs = new Scanner(System.in);
 		short input = inputs.nextShort();
-		Map map = new Map(input);
-		System.out.print("Next map : ");
-		System.out.println(map.getNextMapID());
+		inputs.nextLine();
+		ArrayList<ArrayList<Short>> paths = new Pathfinder(input).getPaths();
+		for(byte i = 0; i < paths.size(); i++) {
+			ArrayList<Short> path = paths.get(i);
+			System.out.println("Chemin n°" + i);
+			for(byte j = 0; j < path.size(); j++) {
+				System.out.print("Map " + path.get(j) + " ; ");
+			}
+			inputs.nextLine();
+		}
+		inputs.close();
 	}
 
 }
