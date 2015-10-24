@@ -19,6 +19,7 @@ public class Phoebe {
 			for(byte j = 0; j < path.size(); j++) {
 				System.out.print("Map " + path.get(j) + " ; ");
 			}
+			System.out.println("");
 			inputs.nextLine();
 		}
 		inputs.close();
