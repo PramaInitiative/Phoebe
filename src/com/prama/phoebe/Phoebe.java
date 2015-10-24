@@ -17,7 +17,8 @@ public class Phoebe {
 			ArrayList<Map> path = paths.get(i);
 			System.out.println("Chemin n°" + i);
 			for(byte j = 0; j < path.size(); j++) {
-				System.out.print("Map " + path.get(j).getMapID() + " ; ");
+				Map curMap = path.get(j);
+				System.out.print("Map " + curMap.getMapID() + " (" + curMap.getNom() + " ; ");
 			}
 			System.out.println("");
 			inputs.nextLine();
