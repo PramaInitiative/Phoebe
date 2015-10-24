@@ -12,12 +12,12 @@ public class Phoebe {
 		Scanner inputs = new Scanner(System.in);
 		short input = inputs.nextShort();
 		inputs.nextLine();
-		ArrayList<ArrayList<Short>> paths = new Pathfinder(input).getPaths();
+		ArrayList<ArrayList<Map>> paths = new Pathfinder(input).getPaths();
 		for(byte i = 0; i < paths.size(); i++) {
-			ArrayList<Short> path = paths.get(i);
+			ArrayList<Map> path = paths.get(i);
 			System.out.println("Chemin n°" + i);
 			for(byte j = 0; j < path.size(); j++) {
-				System.out.print("Map " + path.get(j) + " ; ");
+				System.out.print("Map " + path.get(j).getMapID() + " ; ");
 			}
 			System.out.println("");
 			inputs.nextLine();

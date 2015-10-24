@@ -19,8 +19,11 @@ public class Map {
 			  0,  25,  26,  40,  35,  39,  31,  34,  31,  40,  42,  35,  35,  36,  34,  30,
 			 41,  31,  35,   0,  43, 123,  95, 146,  78,  65};
 	
+	public static String[] noms = {};
+	
 	protected short mapID;
 	protected short matrix;
+	protected String nom;
 	
 	public Map(short mapID) {
 		this.mapID = mapID;
@@ -33,5 +36,9 @@ public class Map {
 	
 	public short getMatrix() {
 		return this.matrix;
+	}
+	
+	public String getNom() {
+		return this.nom;
 	}
 }
