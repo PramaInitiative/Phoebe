@@ -26,6 +26,7 @@ public class Pathfinder {
 	}
 	
 	protected void findPaths(short targetMapID) {
+		// For each map
 		for(short curMapID = 0; curMapID < Map.matrixArray.length; curMapID++) {
 			if(curMapID != targetMapID) {
 				ArrayList<Short> path = new ArrayList<Short>();
