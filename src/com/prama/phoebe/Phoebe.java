@@ -13,10 +13,10 @@ public class Phoebe {
 		short input = inputs.nextShort();
 		inputs.nextLine();
 		ArrayList<ArrayList<Map>> paths = new Pathfinder(input).getPaths();
-		for(byte i = 0; i < paths.size(); i++) {
+		for (byte i = 0; i < paths.size(); i++) {
 			ArrayList<Map> path = paths.get(i);
 			System.out.println("Chemin n°" + i);
-			for(byte j = 0; j < path.size(); j++) {
+			for (byte j = 0; j < path.size(); j++) {
 				Map curMap = path.get(j);
 				System.out.print("Map " + curMap.getMapID() + " (" + curMap.getNom() + ") ; ");
 			}

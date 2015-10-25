@@ -23,7 +23,7 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 			path.add(new Map(curMapID)); // On commence par le point d'entrée.
 			byte length = 1; // Plus rapide que de recalculer la longueur de 'path', non ?
 			short mapID = curMapID; // On doit préserver curMapID (voir commit 4cc7693216240efe9c8f5307e41cc1544c6a1351)
-			while(mapID != targetMapID && length < Pathfinder.maxAmountOfSteps) { // Soit on a dépassé le nombre de pas alloués, soit on est arrivé à destination.
+			while (mapID != targetMapID && length < Pathfinder.maxAmountOfSteps) { // Soit on a dépassé le nombre de pas alloués, soit on est arrivé à destination.
 				mapID = Map.matrix(mapID); // On passe à la map suivante.
 				path.add(new Map(mapID)); // On a une étape supplémentaire.
 				length++; // Donc une de plus !
@@ -34,13 +34,13 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 			
 			// NB : avant ce commit, si le chemin comprenait exactement maxAmountOfSteps étapes, il était rejeté.
 			// Ce n'est plus le cas.
-			if(mapID == targetMapID) { // On est arrivé au bout !
-				if(this.paths.size() == 0) { // Si la liste est vide, on ajoute de toute façon.
+			if (mapID == targetMapID) { // On est arrivé au bout !
+				if (this.paths.size() == 0) { // Si la liste est vide, on ajoute de toute façon.
 					this.paths.add(path); // Sinon le premier test (i = 0) fait crasher.
 				} else { // On a au moins un élément.
 					byte i = 0;
 					ListIterator<ArrayList<Map>> iter = this.paths.listIterator();
-					while(iter.hasNext() && iter.next().size() <= path.size()) { // Tant qu'il y a des chemins et que ceux-ci sont plus courts que l'actuel,
+					while (iter.hasNext() && iter.next().size() <= path.size()) { // Tant qu'il y a des chemins et que ceux-ci sont plus courts que l'actuel,
 							i++; // On passe au suivant.
 					}
 					this.paths.add(i, path); // On ajoute le nouveau chemin.
