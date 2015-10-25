@@ -6,21 +6,23 @@ import java.util.ListIterator; // Plus pratique pour parcourir. Peut-être pas ?
 public class Pathfinder { // Trouve tous les chemins pour se rendre à une map donnée.
 
 	public static byte maxAmountOfSteps = 20; // Option modifiable au gré de l'utilisateur.
+	
+	public static short[] entryPoints = {4, 8, 58, 95, 99, 257, 305, 338, 513, 553}; // Liste des points d'entrée pour la TP
 
 
 	// On n'acceptera que l'ID d'une map pour le constructeur.
 	// L'idée de proposer un constructeur avec un objet Map a été abandonnée.
 	public Pathfinder(short targetMapID) {
 		
-		for(short curMapID = 0; curMapID < Map.matrixArray.length; curMapID++) { // Pour chaque map,
-			if(curMapID != targetMapID) { // différente de la map de destination (évidemment) :
+		for(short curMapID : Pathfinder.entryPoints) { // Pour chaque point d'entrée,
+			if(curMapID != targetMapID) { // différent de la map de destination (évidemment) :
 				
 				
 				// Calcul du chemin
 				
 				ArrayList<Map> path = new ArrayList<Map>(); // Le chemin qui sera poussé (ou non) sur la liste.
-				path.add(new Map(curMapID)); // On commence par la map source.
-				byte length = 1; // Plus rapide que de recalculer la longueur de path, non ?
+				path.add(new Map(curMapID)); // On commence par le point d'entrée.
+				byte length = 1; // Plus rapide que de recalculer la longueur de 'path', non ?
 				short mapID = curMapID; // On doit préserver curMapID (voir commit 4cc7693216240efe9c8f5307e41cc1544c6a1351)
 				while(mapID != targetMapID && length < Pathfinder.maxAmountOfSteps) { // Soit on a dépassé le nombre de pas alloués, soit on est arrivé à destination.
 					mapID = Map.matrixArray[mapID]; // On passe à la map suivante.
