@@ -40,19 +40,7 @@ public class Map {
 			 64,  65,  65,  66,  66,  64,  64,  65,  65,  66,  66,  64,  64,  65,  65,  66,
 			 66,  64,  64,  65,  65,  66,  66,  64,  64,  65,  65,  66,  66,  66, 166};
 	
-	public static short matrix(short mapID) {
-		if (mapID < 245) {
-			return Map.matrixArray[mapID];
-		}
-		for (byte i = 0; i < Pathfinder.afterEntryPoints.length; i++) {
-			if (Pathfinder.entryPoints[i] == mapID) {
-				return Pathfinder.entryPoints[i];
-			}
-		}
-		return 0; // Ne devrait jamais arriver !
-	}
-	
-	// TODO Faire cette liste !!
+	// TODO Haxel, tu dois faire cette liste !!
 	public static String[] noms = {};
 	
 	protected short mapID; // L'ID de la map
@@ -61,7 +49,7 @@ public class Map {
 	
 	public Map(short mapID) {
 		this.mapID = mapID;
-		this.matrix = Map.matrix(mapID);
+		this.matrix = Map.matrixArray[mapID];
 	}
 	
 	// *** GETTERS ***

@@ -8,8 +8,6 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 	public static byte maxAmountOfSteps = 20; // Option modifiable au gré de l'utilisateur.
 	
 	public static short[] entryPoints = {4, 8, 58, 95, 99, 257, 305, 338, 513, 553}; // Liste des points d'entrée pour la TP.
-	// NE PAS SUPPRIMER, C'EST IMPORTANT !!
-	public static short[] afterEntryPoints = {122, 141, 123, 224, 223, 123, 95, 146, 78, 65}; // Liste des maps où on est téléporté après l'Entry Point.
 
 
 	// On n'acceptera que l'ID d'une map pour le constructeur.
@@ -24,7 +22,7 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 			byte length = 1; // Plus rapide que de recalculer la longueur de 'path', non ?
 			short mapID = curMapID; // On doit préserver curMapID (voir commit 4cc7693216240efe9c8f5307e41cc1544c6a1351)
 			while (mapID != targetMapID && length < Pathfinder.maxAmountOfSteps) { // Soit on a dépassé le nombre de pas alloués, soit on est arrivé à destination.
-				mapID = Map.matrix(mapID); // On passe à la map suivante.
+				mapID = Map.matrixArray[mapID]; // On passe à la map suivante.
 				path.add(new Map(mapID)); // On a une étape supplémentaire.
 				length++; // Donc une de plus !
 			}
