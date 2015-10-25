@@ -39,6 +39,7 @@ public class Map {
 	}
 	
 	public String getNom() {
-		return this.nom;
+		//return this.nom;
+		return "nomMap";
 	}
 }

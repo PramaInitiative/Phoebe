@@ -1,6 +1,7 @@
 package com.prama.phoebe;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class Pathfinder {
 	
@@ -11,11 +12,13 @@ public class Pathfinder {
 		this.destination = destinationMapID;
 		this.findPaths(destinationMapID);
 	}
-	
-	
+
+
 	protected short destination;
 	protected short minAmountOfsteps;
 	protected ArrayList<ArrayList<Map>> paths = new ArrayList<ArrayList<Map>>();
+	protected ArrayList<Byte> indexes;
+	private ListIterator<ArrayList<Map>> iter;
 	
 	public short getMinAmountOfSteps() {
 		return this.minAmountOfsteps;
@@ -38,10 +41,25 @@ public class Pathfinder {
 					length++;
 				}
 				if(length < Pathfinder.maxAmountOfSteps) {
-					this.paths.add(path);
+					if(this.paths.size() == 0) {
+						this.paths.add(path);
+					} else {
+						byte i = 0;
+						this.iter = this.paths.listIterator();
+						while(iter.hasNext()) {
+							if(iter.next().size() <= path.size()) {
+								i++;
+							}
+						}
+						this.paths.add(i, path);
+					}
 				}
 			}
 		}
+	}
+	
+	public ListIterator<ArrayList<Map>> listIterator() {
+		return this.iter;
 	}
 	
 }
