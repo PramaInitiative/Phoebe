@@ -20,6 +20,18 @@ public class Map {
 										  0,  25,  26,  40,  35,  39,  31,  34,  31,  40,  42,  35,  35,  36,  34,  30,
 										 41,  31,  35,   0,  43, 123,  95, 146,  78,  65};
 	
+	public static short matrix(short mapID) {
+		if(mapID < 245) {
+			return Map.matrixArray[mapID];
+		}
+		for(byte i = 0; i < Pathfinder.afterEntryPoints.length; i++) {
+			if(Pathfinder.entryPoints[i] == mapID) {
+				return Pathfinder.entryPoints[i];
+			}
+		}
+		return 0; // Ne devrait jamais arriver !
+	}
+	
 	// TODO Faire cette liste !!
 	public static String[] noms = {};
 	
@@ -29,7 +41,7 @@ public class Map {
 	
 	public Map(short mapID) {
 		this.mapID = mapID;
-		this.matrix = Map.matrixArray[mapID];
+		this.matrix = Map.matrix(mapID);
 	}
 	
 	// *** GETTERS ***
