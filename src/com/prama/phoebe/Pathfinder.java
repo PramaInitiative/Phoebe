@@ -18,7 +18,6 @@ public class Pathfinder {
 	protected short minAmountOfsteps;
 	protected ArrayList<ArrayList<Map>> paths = new ArrayList<ArrayList<Map>>();
 	protected ArrayList<Byte> indexes;
-	private ListIterator<ArrayList<Map>> iter;
 	
 	public short getMinAmountOfSteps() {
 		return this.minAmountOfsteps;
@@ -45,7 +44,7 @@ public class Pathfinder {
 						this.paths.add(path);
 					} else {
 						byte i = 0;
-						this.iter = this.paths.listIterator();
+						ListIterator<ArrayList<Map>> iter = this.paths.listIterator();
 						while(iter.hasNext()) {
 							if(iter.next().size() <= path.size()) {
 								i++;
@@ -56,10 +55,6 @@ public class Pathfinder {
 				}
 			}
 		}
-	}
-	
-	public ListIterator<ArrayList<Map>> listIterator() {
-		return this.iter;
 	}
 	
 }
