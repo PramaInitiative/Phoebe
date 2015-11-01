@@ -7,7 +7,7 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 
 	public static byte maxAmountOfSteps = 20; // Option modifiable au gré de l'utilisateur.
 	
-	public static short[] entryPoints = {4, 8, 58, 95, 99, 257, 305, 338, 513, 553}; // Liste des points d'entrée pour la TP.
+	public static short[] entryPoints = {4, 8, 11, 58, 95, 99, 257, 305, 338, 513, 553}; // Liste des points d'entrée pour la TP.
 
 
 	// On n'acceptera que l'ID d'une map pour le constructeur.
