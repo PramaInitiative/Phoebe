@@ -14,6 +14,8 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 	// L'idée de proposer un constructeur avec un objet Map a été abandonnée.
 	public Pathfinder(short targetMapID) {
 		
+		this.targetMapID = targetMapID;
+		
 		for(short curMapID : Pathfinder.entryPoints) { // Pour chaque point d'entrée,
 			// Calcul du chemin
 			
@@ -48,6 +50,7 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 	}
 
 
+	private short targetMapID;
 	protected ArrayList<ArrayList<Map>> paths = new ArrayList<ArrayList<Map>>();
 
 	// *** GETTERS ***
@@ -57,6 +60,10 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 
 	public ArrayList<ArrayList<Map>> getPaths() {
 		return this.paths;
+	}
+	
+	public short getTargetMap() {
+		return this.targetMapID;
 	}
 
 }
