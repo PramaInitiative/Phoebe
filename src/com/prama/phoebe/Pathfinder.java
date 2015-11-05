@@ -19,7 +19,7 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 			Path path = new Path(curMapID, targetMapID);
 
 			// Ajout du chemin
-			if (path.reachedDestination) { // On est arrivé au bout !
+			if (path.hasReachedDestination()) { // On est arrivé au bout !
 				if (this.paths.size() == 0) { // Si la liste est vide, on ajoute de toute façon.
 					this.paths.add(path); // Sinon le premier test (i = 0) fait crasher.
 
@@ -27,6 +27,7 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 					byte i = 0;
 					ListIterator<Path> iter = this.paths.listIterator();
 
+					// iter.hasNext() doit être placé avant iter.next() et les deux doivent être séparés par un && et pas un &, sinon iter.next() provoquera une java.util.NoSuchElementException !
 					while (iter.hasNext() && iter.next().steps() <= path.steps()) { // Tant qu'il y a des chemins et que ceux-ci sont plus courts que l'actuel,
 							i++; // On passe au suivant.
 					}

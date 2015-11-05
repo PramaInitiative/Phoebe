@@ -19,17 +19,23 @@ public class Path {
 			length++; // Donc une de plus !
 		}
 		
+		this.numberOfSteps = length;
 		this.reachedDestination = this.reachedDestination || mapID == destinationMapID; // Si on est arrivé au bout, le chemin est arrivé au but.
 	}
 	
-	public boolean reachedDestination = false;
-	public ArrayList<Map> path;
+	protected boolean reachedDestination = false;
+	private ArrayList<Map> path = new ArrayList<Map>();
+	private int numberOfSteps;
 	
 	public int steps() {
-		return path.size();
+		return this.numberOfSteps;
 	}
 	
 	public Map getMap(int mapIndex) {
 		return path.get(mapIndex);
+	}
+	
+	public boolean hasReachedDestination() {
+		return this.reachedDestination;
 	}
 }
