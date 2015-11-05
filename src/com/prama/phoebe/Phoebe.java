@@ -35,7 +35,7 @@ public final class Phoebe {
 			System.out.println("Nombre minimal d'étapes : " + pathFinder.getMinAmountOfSteps());
 			for (byte i = 0; i < paths.size(); i++) {
 				ArrayList<Map> path = paths.get(i);
-				System.out.println("Chemin n°" + i + ", " + paths.size() + " étapes.");
+				System.out.println("Chemin n°" + i + ", " + path.size() + " étapes.");
 				for (byte j = 0; j < path.size(); j++) {
 					Map curMap = path.get(j);
 					System.out.print("Map " + curMap.getMapID() + " (" + curMap.getNom() + ") ; ");
