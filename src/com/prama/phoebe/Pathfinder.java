@@ -4,8 +4,6 @@ import java.util.ArrayList; // Il faut des listes dont la taile n'est pas connue
 import java.util.ListIterator; // Plus pratique pour parcourir. Peut-être pas ?
 
 public class Pathfinder { // Trouve tous les chemins pour se rendre à une map donnée.
-
-	public static byte maxAmountOfSteps = 20; // Option modifiable au gré de l'utilisateur.
 	
 	public static short[] entryPoints = {4, 8, 11, 58, 95, 99, 257, 305, 338, 513, 553}; // Liste des points d'entrée pour la TP.
 
@@ -18,29 +16,18 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 		
 		for(short curMapID : Pathfinder.entryPoints) { // Pour chaque point d'entrée,
 			// Calcul du chemin
-			
-			ArrayList<Map> path = new ArrayList<Map>(); // Le chemin qui sera poussé (ou non) sur la liste.
-			path.add(new Map(curMapID)); // On commence par le point d'entrée.
-			byte length = 1; // Plus rapide que de recalculer la longueur de 'path', non ?
-			short mapID = curMapID; // On doit préserver curMapID (voir commit 4cc7693216240efe9c8f5307e41cc1544c6a1351)
-			while (mapID != targetMapID && length < Pathfinder.maxAmountOfSteps) { // Soit on a dépassé le nombre de pas alloués, soit on est arrivé à destination.
-				mapID = Map.matrixArray[mapID]; // On passe à la map suivante.
-				path.add(new Map(mapID)); // On a une étape supplémentaire.
-				length++; // Donc une de plus !
-			}
-			
-			
+			Path path = new Path(curMapID, targetMapID);
+
 			// Ajout du chemin
-			
-			// NB : avant ce commit, si le chemin comprenait exactement maxAmountOfSteps étapes, il était rejeté.
-			// Ce n'est plus le cas.
-			if (mapID == targetMapID) { // On est arrivé au bout !
+			if (path.reachedDestination) { // On est arrivé au bout !
 				if (this.paths.size() == 0) { // Si la liste est vide, on ajoute de toute façon.
 					this.paths.add(path); // Sinon le premier test (i = 0) fait crasher.
+
 				} else { // On a au moins un élément.
 					byte i = 0;
-					ListIterator<ArrayList<Map>> iter = this.paths.listIterator();
-					while (iter.hasNext() && iter.next().size() <= path.size()) { // Tant qu'il y a des chemins et que ceux-ci sont plus courts que l'actuel,
+					ListIterator<Path> iter = this.paths.listIterator();
+
+					while (iter.hasNext() && iter.next().steps() <= path.steps()) { // Tant qu'il y a des chemins et que ceux-ci sont plus courts que l'actuel,
 							i++; // On passe au suivant.
 					}
 					this.paths.add(i, path); // On ajoute le nouveau chemin.
@@ -51,14 +38,14 @@ public class Pathfinder { // Trouve tous les chemins pour se rendre à une map do
 
 
 	private short targetMapID;
-	protected ArrayList<ArrayList<Map>> paths = new ArrayList<ArrayList<Map>>();
+	protected ArrayList<Path> paths = new ArrayList<Path>();
 
 	// *** GETTERS ***
 	public int getMinAmountOfSteps() {
-		return this.paths.get(0).size();
+		return this.paths.get(0).steps();
 	}
 
-	public ArrayList<ArrayList<Map>> getPaths() {
+	public ArrayList<Path> getPaths() {
 		return this.paths;
 	}
 	

@@ -20,24 +20,24 @@ public final class Phoebe {
 	}
 	
 	public static void printPaths(Pathfinder pathFinder) {
-		ArrayList<ArrayList<Map>> paths = pathFinder.getPaths();
+		ArrayList<Path> paths = pathFinder.getPaths();
 		if(paths.size() == 0) {
-			System.out.println("Aucun chemin n'a été trouvé pour un maximum de " + Pathfinder.maxAmountOfSteps + " étapes.");
+			System.out.println("Aucun chemin n'a été trouvé pour un maximum de " + Path.maxAmountOfSteps + " étapes.");
 			System.out.println("Voulez-vous essayer avec un nouveau maximum ?");
 			System.out.println("Entrez 0 pour NON, ou un autre nombre (maximum 127) pour ré-essayer.");
 			byte nouveauMax = Phoebe.inputs.nextByte();
 			if(nouveauMax > 0) {
-				Pathfinder.maxAmountOfSteps = nouveauMax;
+				Path.maxAmountOfSteps = nouveauMax;
 				Phoebe.printPaths(new Pathfinder(pathFinder.getTargetMap()));
 			}
 		} else {
 			System.out.println("Des chemins ont été trouvés.");
 			System.out.println("Nombre minimal d'étapes : " + pathFinder.getMinAmountOfSteps());
 			for (byte i = 0; i < paths.size(); i++) {
-				ArrayList<Map> path = paths.get(i);
-				System.out.println("Chemin n°" + i + ", " + path.size() + " étapes.");
-				for (byte j = 0; j < path.size(); j++) {
-					Map curMap = path.get(j);
+				Path path = paths.get(i);
+				System.out.println("Chemin n°" + i + ", " + path.steps() + " étapes.");
+				for (byte j = 0; j < path.steps(); j++) {
+					Map curMap = path.getMap(j);
 					System.out.print("Map " + curMap.getMapID() + " (" + curMap.getNom() + ") ; ");
 				}
 				System.out.println("");

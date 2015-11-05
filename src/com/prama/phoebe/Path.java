@@ -1,0 +1,35 @@
+package com.prama.phoebe;
+
+import java.util.ArrayList;
+
+public class Path {
+
+	public static byte maxAmountOfSteps = 20; // Option modifiable au gré de l'utilisateur.
+	
+	
+	public Path(short entryMapID, short destinationMapID) {
+		path.add(new Map(entryMapID)); // On commence par le point d'entrée.
+		
+		byte length = 1; // Plus rapide que de recalculer la longueur de 'path', non ?
+		short mapID = entryMapID; // On doit préserver curMapID (voir commit 4cc7693216240efe9c8f5307e41cc1544c6a1351)
+		
+		while (mapID != destinationMapID && length < Path.maxAmountOfSteps) { // Soit on a dépassé le nombre de pas alloués, soit on est arrivé à destination.
+			mapID = Map.matrixArray[mapID]; // On passe à la map suivante.
+			path.add(new Map(mapID)); // On a une étape supplémentaire.
+			length++; // Donc une de plus !
+		}
+		
+		this.reachedDestination = this.reachedDestination || mapID == destinationMapID; // Si on est arrivé au bout, le chemin est arrivé au but.
+	}
+	
+	public boolean reachedDestination = false;
+	public ArrayList<Map> path;
+	
+	public int steps() {
+		return path.size();
+	}
+	
+	public Map getMap(int mapIndex) {
+		return path.get(mapIndex);
+	}
+}
