@@ -36,10 +36,7 @@ public final class Phoebe {
 			for (byte i = 0; i < paths.size(); i++) {
 				Path path = paths.get(i);
 				System.out.println("Chemin n°" + i + ", " + path.steps() + " étapes.");
-				for (byte j = 0; j < path.steps(); j++) {
-					Map curMap = path.getMap(j);
-					System.out.print("Map " + curMap.getMapID() + " (" + curMap.getNom() + ") ; ");
-				}
+				System.out.println(path.toString());
 				System.out.println("");
 			}
 		}

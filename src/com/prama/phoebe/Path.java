@@ -38,4 +38,13 @@ public class Path {
 	public boolean hasReachedDestination() {
 		return this.reachedDestination;
 	}
+	
+	public String toString() {
+		String ret = "";
+		for(byte i = 0; i < this.numberOfSteps; i++) {
+			Map curMap = this.path.get(i);
+			ret = ret.concat(" ; Map " + curMap.getMapID() + ", " + curMap.getNom());
+		}
+		return ret.substring(3);
+	}
 }
