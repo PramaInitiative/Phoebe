@@ -8,13 +8,10 @@ Phoebe.java | Contient la méthode void main().
 Map.java | Contient les infos liées aux maps.
 Pathfinder.java | Permet de trouver une liste de chemins permettant d'accéder à une map donnée via téléportation.
 
-## CONTRIBUTIONS
-Contributeur | Commits | Notes
--------------|---------|-------
-ISSOtm | 22 | I am Luigi, number one !
-BUGLITCH | 4 | Quand la partie graphique va avancer, ça va chauffer c'est moi qui voul'dis !
-Haxel59 | Bah... 0 | NOM DE DIEU FAIS QUELQUE CHOSE !!
-(Tableau pas du tout fourni par ISSOtm pour se vanter. Je veux juste donner un coup de pied au cul de Haxel :P)
+## TODOS
+Liste pas focément à jour. Voir les Issues avec le label "TODO".
+* Faire une interface graphique
+* Compléter la liste des maps (voir [Google Doc](https://docs.google.com/spreadsheets/d/1RpBER6uUUCJbRpG74n-hb2ehnNCcEp07VW-hRk-8YD0/edit))
 
 
 (c) The Trust - PRAMA Initiative
