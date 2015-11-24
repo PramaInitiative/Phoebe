@@ -1,6 +1,7 @@
 package com.prama.phoebe;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Path {
 
@@ -37,6 +38,17 @@ public class Path {
 	
 	public boolean hasReachedDestination() {
 		return this.reachedDestination;
+	}
+	
+	public Vector<Integer> toVector() {
+		Vector<Integer> ret = new Vector<Integer>();
+		
+		for(byte i = 0; i < this.numberOfSteps; i++) {
+			Map curMap = this.path.get(i);
+			ret.add(Short.toUnsignedInt(curMap.getMapID()));
+		}
+		
+		return ret;
 	}
 	
 	public String toString() {
