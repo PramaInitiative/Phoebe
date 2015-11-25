@@ -153,7 +153,7 @@ public class PhoebeWindow extends JFrame {
 		list1 = new JList<String>();
 		list1.setBounds(440, 50, 300, 50);
 		
-		sinnohMapPanel = new ImagePanel(Thread.currentThread().getContextClassLoader().getResourceAsStream("com/prama/phoebe/assets/carte.png"));
+		sinnohMapPanel = new ImagePanel(Thread.currentThread().getContextClassLoader().getResourceAsStream("com/prama/phoebe/assets/carte.PNG"));
 		sinnohMapPanel.setBounds(0, 0, 432, 336);
 		sinnohMapPanel.addMouseListener(sinnohMapPanelMouseListener);
 		
