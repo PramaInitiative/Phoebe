@@ -56,7 +56,11 @@ public class PhoebeWindow extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			JOptionPane.showMessageDialog(null, "Cliquez sur une ville sur la carte pour n'avoir dans la liste que les localisations de cette ville dans la liste.\n"+
 												"Puis, choisissez dans la liste parmi toutes les localisations proposées votre destination.\n"+
-												"Vous pourrez alors parmi tous les chemins possibles celui que vous voulez emprunter pour y arriver.");
+												"Vous pourrez alors parmi tous les chemins possibles celui que vous voulez emprunter pour y arriver.\n"+
+												"\n"+
+												"Signification des sigles :\n"+
+												"(NI) : Non Implémenté, bâtiment ne faisant pas partie du jeu)\n"+
+												"(!) : Bâtiment inconnu impossible à charger.");
 		}
 		
 	};
@@ -73,8 +77,8 @@ public class PhoebeWindow extends JFrame {
 	private MouseListener sinnohMapPanelMouseListener = new MouseListener () {
 		@Override
 		public void mouseClicked(MouseEvent mouse) {
-			int mouseX = (mouse.getX() - 1) / 7;
-			int mouseY = (mouse.getY() + 3) / 7;
+			int mouseX = (mouse.getX() - 2) / 14;
+			int mouseY = (mouse.getY() + 6) / 14;
 			short[] locs = Map.getTownLocations(Map.mapArray[mouseY * 30 + mouseX]);
 			townLocationsVector = new Vector<Integer>();
 			pathfinder = null;
@@ -131,7 +135,7 @@ public class PhoebeWindow extends JFrame {
 	
 	public PhoebeWindow() {		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(540, 400);
+		this.setSize(800, 375);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Phoebe");
 		
@@ -140,26 +144,26 @@ public class PhoebeWindow extends JFrame {
 		
 		label1 = new JLabel();
 		label1.setText("Cliquez sur une ville ou choisissez une localisation.");
-		label1.setBounds(220, 0, 300, 20);
+		label1.setBounds(440, 0, 300, 20);
 		
 		label2 = new JLabel();
-		label2.setBounds(220, 70, 200, 20);
+		label2.setBounds(440, 49, 200, 20);
 		label2.setText("Choisissez votre chemin :");
 		
 		list1 = new JList<String>();
-		list1.setBounds(220, 120, 300, 220);
+		list1.setBounds(440, 50, 300, 50);
 		
-		sinnohMapPanel = new ImagePanel(Thread.currentThread().getContextClassLoader().getResourceAsStream("com/prama/phoebe/assets/carte.bmp"));
-		sinnohMapPanel.setBounds(0, 0, 216, 168);
+		sinnohMapPanel = new ImagePanel(Thread.currentThread().getContextClassLoader().getResourceAsStream("com/prama/phoebe/assets/carte.PNG"));
+		sinnohMapPanel.setBounds(0, 0, 432, 336);
 		sinnohMapPanel.addMouseListener(sinnohMapPanelMouseListener);
 		
 		pramaLink = new JButton();
-		pramaLink.setBounds(1, 320, 200, 20);
+		pramaLink.setBounds(567, 315, 209, 20);
 		pramaLink.setText("Aller sur le site de PRAMA");
 		pramaLink.addActionListener(pramaLinkListener);
 		
 		helpButton = new JButton();
-		helpButton.setBounds(1, 299, 200, 20);
+		helpButton.setBounds(440, 315, 120, 20);
 		helpButton.setText("Besoin d'aide ?");
 		helpButton.addActionListener(helpListener);
 		
@@ -185,7 +189,7 @@ public class PhoebeWindow extends JFrame {
 			temp = comboBoxTownLocations.getSelectedIndex();
 		
 		comboBoxTownLocations = new JComboBox<String>();
-		comboBoxTownLocations.setBounds(220, 20, 300, 20);
+		comboBoxTownLocations.setBounds(440, 20, 300, 20);
 		
 		for(int i = 0; i < townLocationsVector.size(); i++) {
 			comboBoxTownLocations.addItem(townLocationsVector.get(i) + " : " + Map.noms[townLocationsVector.get(i)]);
@@ -196,11 +200,11 @@ public class PhoebeWindow extends JFrame {
 		comboBoxTownLocations.addActionListener(comboBoxTownLocationsActionListener);
 		
 		scrollPane1 = new JScrollPane(list1);
-		scrollPane1.setBounds(220, 120, 300, 220);
+		scrollPane1.setBounds(440, 95, 337, 214);
 		scrollPane1.setViewportView(list1);
 		
 		comboBoxPaths = new JComboBox<String>();
-		comboBoxPaths.setBounds(220, 90, 200, 20);
+		comboBoxPaths.setBounds(440, 69, 200, 20);
 		
 		if (pathfinder != null)
 			if(pathfinder.paths.size() > 0) {
