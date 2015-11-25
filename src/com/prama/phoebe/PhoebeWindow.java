@@ -54,8 +54,9 @@ public class PhoebeWindow extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JOptionPane.showMessageDialog(null, "Cliquez sur une ville sur la carte pour n'avoir dans la liste que les localisations de cette ville dans la liste."+
-												"");
+			JOptionPane.showMessageDialog(null, "Cliquez sur une ville sur la carte pour n'avoir dans la liste que les localisations de cette ville dans la liste.\n"+
+												"Puis, choisissez dans la liste parmi toutes les localisations proposées votre destination.\n"+
+												"Vous pourrez alors parmi tous les chemins possibles celui que vous voulez emprunter pour y arriver.");
 		}
 		
 	};
@@ -75,7 +76,6 @@ public class PhoebeWindow extends JFrame {
 			int mouseX = (mouse.getX() - 1) / 7;
 			int mouseY = (mouse.getY() + 3) / 7;
 			short[] locs = Map.getTownLocations(Map.mapArray[mouseY * 30 + mouseX]);
-			
 			townLocationsVector = new Vector<Integer>();
 			pathfinder = null;
 			pathVector = new Vector<Integer>();
@@ -84,8 +84,12 @@ public class PhoebeWindow extends JFrame {
 				for(int i = 0; i < locs.length; i++) {
 					townLocationsVector.add((int)locs[i]);
 				}
-				drawWindow();
+			} else {
+				for(int i = 0; i < 559; i++) {
+					townLocationsVector.add(i);
+				}
 			}
+			drawWindow();
 			label1.setText("Choisissez votre destination (" + Map.noms[Map.mapArray[mouseY * 30 + mouseX]] + ") :");
 		}
 		@Override
