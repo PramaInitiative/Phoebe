@@ -413,7 +413,7 @@ public class Map {
 			"Forêt de Vestigion",
 			"Forge Fuego",
 			"Forge Fuego",
-			"??? (Zone Mystère Extérieur)",
+			"Zone Mystère",
 			"Mont Couronné",
 			"Mont Couronné",
 			"Mont Couronné",
@@ -429,9 +429,9 @@ public class Map {
 			"Mont Couronné",
 			"Colonnes Lances (avec évènements)",
 			"Colonnes Lances (sans évènements)",
-			"??? (Zone Mystère extérieur)",
+			"Zone Mystère",
 			"Grand Marais - Zone bêta",
-			"??? (Zone Mystère extérieur)",
+			"Zone Mystère",
 			"Ruines Bonville",
 			"Ruines Bonville",
 			"Ruines Bonville",
@@ -804,5 +804,15 @@ public class Map {
 			return townLocationsArray[townID];
 		else
 			return null;
+	}
+	
+	public static short getTownFromLocation(int map) {
+		for (short i = 0; i < townsArray.length; i++) {
+			for (int j = 0; j < townLocationsArray[i].length; j++) {
+				if(townLocationsArray[i][j] == map) return townsArray[i];
+			}
+		}
+		
+		return 0;
 	}
 }

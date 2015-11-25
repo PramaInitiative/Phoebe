@@ -7,7 +7,6 @@ public class Path {
 
 	public static byte maxAmountOfSteps = 20; // Option modifiable au gré de l'utilisateur.
 	
-	
 	public Path(short entryMapID, short destinationMapID) {
 		path.add(new Map(entryMapID)); // On commence par le point d'entrée.
 		

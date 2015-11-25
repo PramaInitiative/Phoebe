@@ -192,7 +192,13 @@ public class PhoebeWindow extends JFrame {
 		comboBoxTownLocations.setBounds(440, 20, 300, 20);
 		
 		for(int i = 0; i < townLocationsVector.size(); i++) {
-			comboBoxTownLocations.addItem(townLocationsVector.get(i) + " : " + Map.noms[townLocationsVector.get(i)]);
+			if(townLocationsVector.size() == 559)
+				if(Map.getTownFromLocation(i) != 0)
+					comboBoxTownLocations.addItem(townLocationsVector.get(i) + " : (" + Map.noms[townLocationsVector.get(Map.getTownFromLocation(i))] + ") " + Map.noms[townLocationsVector.get(i)]);
+				else
+					comboBoxTownLocations.addItem(townLocationsVector.get(i) + " : " + Map.noms[townLocationsVector.get(i)]);
+			else
+				comboBoxTownLocations.addItem(townLocationsVector.get(i) + " : " + Map.noms[townLocationsVector.get(i)]);
 		}
 		if(comboBoxTownLocations.getItemCount() > temp && temp >= 0)
 			comboBoxTownLocations.setSelectedIndex(temp);

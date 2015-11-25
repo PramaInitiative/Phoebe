@@ -7,8 +7,6 @@ public final class Phoebe {
 	static PhoebeWindow window;
 	static ArrayList<Path> paths;
 	
-	static short selectedTown = 0;
-	
 	public static void main(String[] args) {
 		window = new PhoebeWindow();
 		
