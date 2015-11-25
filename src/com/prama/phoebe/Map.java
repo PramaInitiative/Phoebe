@@ -683,17 +683,4 @@ public class Map {
 		else
 			return null;
 	}
-	
-	public static int getTownFromLocation(int map) {
-		int i = 0;
-		int j = 0;
-		
-		for (i = 0; i < townsArray.length; i++) {
-			for(j = 0; j < townLocationsArray[i].length; i++) {
-				if(townLocationsArray[i][j] == map) return i;
-			}
-		}
-		
-		return 0;
-	}
 }

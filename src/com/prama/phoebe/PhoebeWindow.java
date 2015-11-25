@@ -84,8 +84,12 @@ public class PhoebeWindow extends JFrame {
 				for(int i = 0; i < locs.length; i++) {
 					townLocationsVector.add((int)locs[i]);
 				}
-				drawWindow();
+			} else {
+				for(int i = 0; i < 559; i++) {
+					townLocationsVector.add(i);
+				}
 			}
+			drawWindow();
 			label1.setText("Choisissez votre destination (" + Map.noms[Map.mapArray[mouseY * 30 + mouseX]] + ") :");
 		}
 		@Override
