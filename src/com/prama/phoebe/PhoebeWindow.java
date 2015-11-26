@@ -1,6 +1,7 @@
 package com.prama.phoebe;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,6 +28,7 @@ public class PhoebeWindow extends JFrame {
 	private JButton pramaLink;
 	private JButton helpButton;
 	private JList<String> list1;
+	private JCheckBox detailCheckBox;
 	public JComboBox<String> comboBoxTownLocations;
 	private JComboBox<String> comboBoxPaths;
 	private JScrollPane scrollPane1;
@@ -70,6 +72,14 @@ public class PhoebeWindow extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			selectedPath = comboBoxPaths.getSelectedIndex();
 			pathVector = pathfinder.paths.get(selectedPath).toVector();
+			drawWindow();
+		}
+	};
+	
+	private ActionListener checkBoxActionListener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			setPathList();
 			drawWindow();
 		}
 	};
@@ -150,9 +160,6 @@ public class PhoebeWindow extends JFrame {
 		label2.setBounds(440, 49, 200, 20);
 		label2.setText("Choisissez votre chemin :");
 		
-		list1 = new JList<String>();
-		list1.setBounds(440, 50, 300, 50);
-		
 		sinnohMapPanel = new ImagePanel(Thread.currentThread().getContextClassLoader().getResourceAsStream("com/prama/phoebe/assets/carte.PNG"));
 		sinnohMapPanel.setBounds(0, 0, 432, 336);
 		sinnohMapPanel.addMouseListener(sinnohMapPanelMouseListener);
@@ -167,6 +174,11 @@ public class PhoebeWindow extends JFrame {
 		helpButton.setText("Besoin d'aide ?");
 		helpButton.addActionListener(helpListener);
 		
+		detailCheckBox = new JCheckBox();
+		detailCheckBox.setText("Mode détaillé");
+		detailCheckBox.setBounds(640, 69, 100, 20);
+		detailCheckBox.addActionListener(checkBoxActionListener);
+		
 		drawWindow();
 		
 		this.setVisible(true);
@@ -175,13 +187,15 @@ public class PhoebeWindow extends JFrame {
 	public void drawWindow() {
 		panel.removeAll();
 		
-		Vector<String> listItems = new Vector<String>();
+		/*Vector<String> listItems = new Vector<String>();
 		
 		for(int i = 0; i < pathVector.size(); i++) {
 			listItems.add(pathVector.get(i) + " : " + Map.noms[pathVector.get(i)]);
 		}
 		
-		list1 = new JList<String>(listItems);
+		list1 = new JList<String>(listItems);*/
+		
+		setPathList();
 		
 		int temp = 0;
 		
@@ -239,8 +253,10 @@ public class PhoebeWindow extends JFrame {
 		if(comboBoxTownLocations.getItemCount() > 0)
 			panel.add(comboBoxTownLocations);
 		panel.add(helpButton);
-		if(comboBoxPaths.getItemCount() > 0)
+		if(comboBoxPaths.getItemCount() > 0) {
 			panel.add(comboBoxPaths);
+			panel.add(detailCheckBox);
+		}
 		
 		this.setContentPane(panel);
 	}
@@ -255,5 +271,40 @@ public class PhoebeWindow extends JFrame {
 	
 	public int getSelectedPath() {
 		return comboBoxPaths.getSelectedIndex();
+	}
+	
+	private void setPathList() {
+		Vector<String> listItems = new Vector<String>();
+		
+		if(detailCheckBox.isSelected()) {
+			listItems.add("Rentrez dans la void par " + Map.noms[pathVector.get(0)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(0))] + ").");
+			
+			if(pathVector.size() >= 2) {
+				listItems.add("Montez jusqu'à trouver " + Map.noms[pathVector.get(1)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(1))] + ").");
+			
+			
+				int i = 2;
+				while(i < pathVector.size()) {
+					listItems.add("Sauvegardez et redémarrez le jeu.");
+					listItems.add("Faites un pas en bas et un pas en haut pour arriver à");
+					listItems.add(Map.noms[pathVector.get(i)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(i))] + ").");
+					i++;
+				}
+				
+				listItems.add("Sauvegardez et redémarrez le jeu.");
+				listItems.add("Descendez jusqu'à rencontrer un mur invisible.");
+				listItems.add("Faites XABB");
+				listItems.add("Vous êtes arrivé.");
+			} else {
+				listItems.add("Vous êtes arrivé.");
+			}
+		} else {
+			for(int i = 0; i < pathVector.size(); i++) {
+				listItems.add(pathVector.get(i) + " : " + Map.noms[pathVector.get(i)]);
+			}
+		}
+		
+		list1 = new JList<String>(listItems);
+		
 	}
 }
