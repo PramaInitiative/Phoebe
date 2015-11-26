@@ -275,32 +275,33 @@ public class PhoebeWindow extends JFrame {
 	
 	private void setPathList() {
 		Vector<String> listItems = new Vector<String>();
-		
-		if(detailCheckBox.isSelected()) {
-			listItems.add("Rentrez dans la void par " + Map.noms[pathVector.get(0)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(0))] + ").");
-			
-			if(pathVector.size() >= 2) {
-				listItems.add("Montez jusqu'à trouver " + Map.noms[pathVector.get(1)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(1))] + ").");
-			
-			
-				int i = 2;
-				while(i < pathVector.size()) {
-					listItems.add("Sauvegardez et redémarrez le jeu.");
-					listItems.add("Faites un pas en bas et un pas en haut pour arriver à");
-					listItems.add(Map.noms[pathVector.get(i)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(i))] + ").");
-					i++;
-				}
+		if(pathVector.size() != 0) {
+			if(detailCheckBox.isSelected()) {
+				listItems.add("Rentrez dans la void par " + Map.noms[pathVector.get(0)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(0))] + ").");
 				
-				listItems.add("Sauvegardez et redémarrez le jeu.");
-				listItems.add("Descendez jusqu'à rencontrer un mur invisible.");
-				listItems.add("Faites XABB");
-				listItems.add("Vous êtes arrivé.");
+				if(pathVector.size() >= 2) {
+					listItems.add("Montez jusqu'à trouver " + Map.noms[pathVector.get(1)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(1))] + ").");
+				
+				
+					int i = 2;
+					while(i < pathVector.size()) {
+						listItems.add("Sauvegardez et redémarrez le jeu.");
+						listItems.add("Faites un pas en bas et un pas en haut pour arriver à");
+						listItems.add(Map.noms[pathVector.get(i)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(i))] + ").");
+						i++;
+					}
+					
+					listItems.add("Sauvegardez et redémarrez le jeu.");
+					listItems.add("Descendez jusqu'à rencontrer un mur invisible.");
+					listItems.add("Faites XABB");
+					listItems.add("Vous êtes arrivé.");
+				} else {
+					listItems.add("Vous êtes arrivé.");
+				}
 			} else {
-				listItems.add("Vous êtes arrivé.");
-			}
-		} else {
-			for(int i = 0; i < pathVector.size(); i++) {
-				listItems.add(pathVector.get(i) + " : " + Map.noms[pathVector.get(i)]);
+				for(int i = 0; i < pathVector.size(); i++) {
+					listItems.add(pathVector.get(i) + " : " + Map.noms[pathVector.get(i)]);
+				}
 			}
 		}
 		
