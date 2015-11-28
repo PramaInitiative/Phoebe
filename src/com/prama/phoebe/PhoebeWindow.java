@@ -187,14 +187,6 @@ public class PhoebeWindow extends JFrame {
 	public void drawWindow() {
 		panel.removeAll();
 		
-		/*Vector<String> listItems = new Vector<String>();
-		
-		for(int i = 0; i < pathVector.size(); i++) {
-			listItems.add(pathVector.get(i) + " : " + Map.noms[pathVector.get(i)]);
-		}
-		
-		list1 = new JList<String>(listItems);*/
-		
 		setPathList();
 		
 		int temp = 0;
