@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public final class Phoebe {
 	
+	public final static String version = "Phoebe 1.0";
+	
 	static PhoebeWindow window;
 	static ArrayList<Path> paths;
 	

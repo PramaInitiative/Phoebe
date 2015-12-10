@@ -61,7 +61,7 @@ public class PhoebeWindow extends JFrame {
 												"Vous pourrez alors parmi tous les chemins possibles celui que vous voulez emprunter pour y arriver.\n"+
 												"\n"+
 												"Signification des sigles :\n"+
-												"(NI) : Non Implémenté, bâtiment ne faisant pas partie du jeu)\n"+
+												"(NI) : Non Implémenté, bâtiment ne faisant pas partie du jeu\n"+
 												"(!) : Bâtiment inconnu impossible à charger.");
 		}
 		
@@ -147,7 +147,7 @@ public class PhoebeWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(800, 375);
 		this.setLocationRelativeTo(null);
-		this.setTitle("Phoebe");
+		this.setTitle(Phoebe.version);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -186,14 +186,6 @@ public class PhoebeWindow extends JFrame {
 	
 	public void drawWindow() {
 		panel.removeAll();
-		
-		/*Vector<String> listItems = new Vector<String>();
-		
-		for(int i = 0; i < pathVector.size(); i++) {
-			listItems.add(pathVector.get(i) + " : " + Map.noms[pathVector.get(i)]);
-		}
-		
-		list1 = new JList<String>(listItems);*/
 		
 		setPathList();
 		
@@ -300,7 +292,7 @@ public class PhoebeWindow extends JFrame {
 				}
 			} else {
 				for(int i = 0; i < pathVector.size(); i++) {
-					listItems.add(pathVector.get(i) + " : " + Map.noms[pathVector.get(i)]);
+					listItems.add(pathVector.get(i) + " : " + Map.noms[pathVector.get(i)] + " (" + Map.noms[Map.getTownFromLocation(pathVector.get(i))] + ").");
 				}
 			}
 		}

@@ -391,7 +391,7 @@ public class Map {
 			"Salle d'Adrien",
 			"Couloir vers Lucio",
 			"Salle de Lucio",
-			"Chemine vers Cynthia",
+			"Chemin vers Cynthia",
 			"Salle de Cynthia",
 			"Chemin vers le Panthéon",
 			"Panthéon",
